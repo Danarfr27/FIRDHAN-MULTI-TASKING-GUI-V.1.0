@@ -44,6 +44,55 @@ Navigasi Menu
 
 ◎ AI CONFIG: Sesuaikan gaya bicara dan batasan sistem AI. Klik "SIMPAN KONFIGURASI" untuk menerapkan perubahan tanpa perlu restart aplikasi.
 
+JANGAN LUPA, BIAR ASSISTANT LU AKTIF DAN BISA BALAS CHAT LU : 
+import os
+import sys
+import re
+import json
+import shutil
+import subprocess
+import threading
+import time
+import tkinter as tk
+from tkinter import messagebox, scrolledtext
+from datetime import datetime
+from pathlib import Path
+import urllib.request
+import urllib.error
+import random
+
+API_KEYS = [
+    "APIKEY LU",
+    "APIKEY LU",
+    "APIKEY LU",
+    "APIKEY LU",
+    "APIKEY LU",
+    "APIKEY LU",
+    "APIKEY LU",
+    "ISI YANG BANYAK BIAR BISA ROTASI APIKEYS. CARI DI OPENROUTER BUAT AI ASSISTANT CHATNYA",
+]
+
+# Model gratis TERAVALIDASI — di-fetch live dari OpenRouter saat startup.
+# (model lama seperti llama-3.3-70b:free / mistral-small:free sudah tidak free lagi → 404)
+FALLBACK_FREE_MODELS = [
+    "google/gemma-4-31b-it:free",
+    "google/gemma-4-26b-a4b-it:free",
+    "openrouter/free",
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+    "nvidia/nemotron-3.5-lightning:free",
+    "thinkingmachines/inkling:free",
+    "inclusionai/ling-3.1-flash",
+    "inclusionai/ling-3.0-flash-sante:free",
+    "dots-studio/dots-3-note-preview:free",
+    "liquid/lfm-2.5-2.6b:free",
+    "poolside/laguna-s-2.1:free",
+    "poolside/laguna-xs-2.1:free",
+    "cohere/north-mini-code:free",
+    "apodex/apodex-1.1-mini:free",
+]
+
 APP_MAP = {
         "chrome": ["chrome", "google chrome", "browser", "chromium", "edge"],
         "word": ["winword", "microsoft word", "ms word"],
